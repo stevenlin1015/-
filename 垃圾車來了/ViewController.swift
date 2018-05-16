@@ -9,10 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet var sideMenu: UIView!
+    @IBOutlet var sideMenuLeadingConstant: NSLayoutConstraint!
+    var sideMenuIsOpened = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +25,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func isOpenedSideMenu(_ sender: UIBarButtonItem) {
+        if sideMenuIsOpened {
+            sideMenuLeadingConstant.constant = -160
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            sideMenuLeadingConstant.constant = 0
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        sideMenuIsOpened = !sideMenuIsOpened
+    }
+    
 }
 
