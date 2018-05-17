@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK:  IBOutlet and property
+    @IBOutlet var mapView: MKMapView!
     @IBOutlet var infoTableView: UITableView!
     var car: String?
     
@@ -53,17 +55,28 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         for dustcart in self.dustcarts {
             if dustcart.car == self.car! {
+                
+                //Set up annotation of DustCart
+                let dustCartAnnotation = MKPointAnnotation()
+                dustCartAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(dustcart.latitude)!, longitude: Double(dustcart.longitude)!)
+                dustCartAnnotation.title = dustcart.car
+                dustCartAnnotation.subtitle = dustcart.location
+                mapView.addAnnotation(dustCartAnnotation)
+                mapView.setCenter(dustCartAnnotation.coordinate, animated: true)
+                let regionToDisplay = MKCoordinateRegionMakeWithDistance(
+                    dustCartAnnotation.coordinate, 500, 500);
+                mapView.region = MKCoordinateRegion(center: regionToDisplay.center, span: regionToDisplay.span)
                 switch indexPath.row {
                 case 0:
-                    cell.informationLabel.text! = dustcart.car
+                    cell.informationLabel.text! = "車牌號碼：" + dustcart.car
                 case 1:
-                    cell.informationLabel.text! = dustcart.latitude + " " + dustcart.longitude
+                    cell.informationLabel.text! = "垃圾車目前位置：" + dustcart.location
                 case 2:
-                    cell.informationLabel.text! = dustcart.lineid
+                    cell.informationLabel.text! = "清運路線編號：" + dustcart.lineid
                 case 3:
-                    cell.informationLabel.text! = dustcart.cityname
+                    cell.informationLabel.text! = "行政區歸屬：" + dustcart.cityname
                 case 4:
-                    cell.informationLabel.text! = dustcart.time
+                    cell.informationLabel.text! = "上一次更新時間：" + dustcart.time
                 default:
                     cell.informationLabel.text! = "no value."
                 }

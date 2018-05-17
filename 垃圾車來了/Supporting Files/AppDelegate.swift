@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //MARK:
+    /*匯入CoreLocation framework的目的是為了讓MapKit View取得GPS座標來顯示使用者目前所在位置。如果不需要顯示使用者所在位置，CoreLocation framework就不需要匯入了。
+    */
+    let locationManager = CLLocationManager()
+    
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //詢問並取得目前位置
+        locationManager.requestWhenInUseAuthorization()
+        
         return true
     }
 
