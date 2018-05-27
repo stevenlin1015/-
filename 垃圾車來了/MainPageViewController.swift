@@ -97,14 +97,16 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             let dustCartLocation = CLLocation(latitude: Double(dustcarts[indexPath.row].latitude)!, longitude: Double(dustcarts[indexPath.row].longitude)!)
             distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
             print("距離：\(Double(distanceRepresentInMeter)) 公尺")
-            
-//            cell.distanceFromUserLabel.text = "經緯度：" + dustcarts[indexPath.row].longitude + " " + dustcarts[indexPath.row].latitude
             cell.distanceFromUserLabel.text = "距離你： \(Int(distanceRepresentInMeter)) 公尺。"
             cell.licensePlateNumberLabel.text = "車牌：" + dustcarts[indexPath.row].car
             cell.currentLocationLabel.text = "目前位置：" + dustcarts[indexPath.row].location
         }
+        
+        cell.selectionStyle = .none
         return cell
     }
+    
+
     
     /*
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -38,6 +38,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         fetchData()
         displayUserLocation()
+        infoTableView.allowsSelection = false
     }
 
     override func didReceiveMemoryWarning() {
