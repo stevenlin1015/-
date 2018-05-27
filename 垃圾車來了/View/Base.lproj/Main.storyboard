@@ -115,8 +115,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-gZ-4r7">
-                                <rect key="frame" x="-160" y="0.0" width="160" height="667"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-gZ-4r7">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by 新北市政府" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rH-9i-ahB">
                                         <rect key="frame" x="8" y="644.5" width="144" height="14.5"/>
@@ -285,7 +285,7 @@
         <!--政府公告-->
         <scene sceneID="SrW-0m-Ygp">
             <objects>
-                <viewController id="MGb-bp-7Kj" sceneMemberID="viewController">
+                <viewController id="MGb-bp-7Kj" customClass="GovernmentNoticeViewController" customModule="垃圾車來了" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rco-DZ-yub">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,11 +297,74 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve5-Q9-29T">
+                                <rect key="frame" x="-160" y="0.0" width="160" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by 新北市政府" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4E-oC-2KO">
+                                        <rect key="frame" x="8" y="644.5" width="144" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-gg-XCe">
+                                        <rect key="frame" x="8" y="117" width="144" height="184"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgg-zd-BP8">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="主頁">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6Q-Ww-VQx">
+                                                <rect key="frame" x="0.0" y="68" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="政府公告">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQL-Pg-zja">
+                                                <rect key="frame" x="0.0" y="136" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="設定">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.035294117649999998" green="0.61568627450000002" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="J4E-oC-2KO" firstAttribute="leading" secondItem="ve5-Q9-29T" secondAttribute="leading" constant="8" id="3P5-oD-DO2"/>
+                                    <constraint firstAttribute="trailing" secondItem="x7w-gg-XCe" secondAttribute="trailing" constant="8" id="8dn-Vx-9K9"/>
+                                    <constraint firstAttribute="bottom" secondItem="J4E-oC-2KO" secondAttribute="bottom" constant="8" id="E0w-ib-KcB"/>
+                                    <constraint firstAttribute="trailing" secondItem="J4E-oC-2KO" secondAttribute="trailing" constant="8" id="KJj-RF-T1b"/>
+                                    <constraint firstItem="x7w-gg-XCe" firstAttribute="top" secondItem="ve5-Q9-29T" secondAttribute="top" constant="117" id="iEp-bN-seT"/>
+                                    <constraint firstItem="x7w-gg-XCe" firstAttribute="leading" secondItem="ve5-Q9-29T" secondAttribute="leading" constant="8" id="mpu-Vg-U0a"/>
+                                    <constraint firstAttribute="width" constant="160" id="xCg-da-QVh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ve5-Q9-29T" firstAttribute="leading" secondItem="plt-42-wpz" secondAttribute="leading" constant="-160" id="1W6-eX-Lyl"/>
+                            <constraint firstItem="ve5-Q9-29T" firstAttribute="top" secondItem="Rco-DZ-yub" secondAttribute="top" id="fh2-wZ-LpB"/>
+                            <constraint firstItem="ve5-Q9-29T" firstAttribute="bottom" secondItem="plt-42-wpz" secondAttribute="bottom" id="hpF-Mc-FOS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="plt-42-wpz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="政府公告" id="lhy-QQ-Iab"/>
+                    <navigationItem key="navigationItem" title="政府公告" id="lhy-QQ-Iab">
+                        <barButtonItem key="leftBarButtonItem" image="sideMenuButton" id="J8H-lv-lms">
+                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="isOpenedSideMenu:" destination="MGb-bp-7Kj" id="gD6-1N-bJu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideMenu" destination="ve5-Q9-29T" id="T3L-RK-e7P"/>
+                        <outlet property="sideMenuLeadingConstant" destination="1W6-eX-Lyl" id="nj6-wN-8uH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykl-4A-SA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,14 +373,79 @@
         <!--設定-->
         <scene sceneID="Mgp-kT-zG8">
             <objects>
-                <viewController id="d3d-a0-R6x" sceneMemberID="viewController">
+                <viewController id="d3d-a0-R6x" customClass="SettingViewController" customModule="垃圾車來了" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="acJ-PJ-y1z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Is-rh-u1W">
+                                <rect key="frame" x="-160" y="0.0" width="160" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by 新北市政府" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-vO-UrS">
+                                        <rect key="frame" x="8" y="644.5" width="144" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="k3I-vO-ADm">
+                                        <rect key="frame" x="8" y="117" width="144" height="184"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-dC-Oys">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="主頁">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qtq-8x-s0d">
+                                                <rect key="frame" x="0.0" y="68" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="政府公告">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noF-ZR-y75">
+                                                <rect key="frame" x="0.0" y="136" width="144" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <state key="normal" title="設定">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.035294117649999998" green="0.61568627450000002" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="6b4-Si-w0t"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q4T-vO-UrS" secondAttribute="trailing" constant="8" id="LwY-Bn-W3v"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q4T-vO-UrS" secondAttribute="bottom" constant="8" id="MC9-FW-xdi"/>
+                                    <constraint firstItem="k3I-vO-ADm" firstAttribute="top" secondItem="7Is-rh-u1W" secondAttribute="top" constant="117" id="Uwt-Ol-BJv"/>
+                                    <constraint firstItem="Q4T-vO-UrS" firstAttribute="leading" secondItem="7Is-rh-u1W" secondAttribute="leading" constant="8" id="XIf-zV-0IC"/>
+                                    <constraint firstAttribute="trailing" secondItem="k3I-vO-ADm" secondAttribute="trailing" constant="8" id="iYh-qs-MNY"/>
+                                    <constraint firstItem="k3I-vO-ADm" firstAttribute="leading" secondItem="7Is-rh-u1W" secondAttribute="leading" constant="8" id="yEn-rx-rgF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Is-rh-u1W" firstAttribute="top" secondItem="acJ-PJ-y1z" secondAttribute="top" id="7Zl-hs-SKT"/>
+                            <constraint firstItem="7Is-rh-u1W" firstAttribute="leading" secondItem="kcp-ec-srB" secondAttribute="leading" constant="-160" id="8uj-fF-oT7"/>
+                            <constraint firstAttribute="bottom" secondItem="7Is-rh-u1W" secondAttribute="bottom" id="VVD-uB-N3O"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kcp-ec-srB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="設定" id="Scp-j7-pbF"/>
+                    <navigationItem key="navigationItem" title="設定" id="Scp-j7-pbF">
+                        <barButtonItem key="leftBarButtonItem" image="sideMenuButton" id="JdB-kj-Zgs">
+                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="isOpenedSideMenu:" destination="d3d-a0-R6x" id="nxH-B5-xuS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideMenu" destination="7Is-rh-u1W" id="P4q-0E-Bs8"/>
+                        <outlet property="sideMenuLeadingConstant" destination="8uj-fF-oT7" id="mjI-W4-Mbe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gA-EX-qso" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -365,7 +493,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eYc-wS-ZA2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uyv-p7-9dJ" sceneMemberID="viewController">
+                <navigationController id="uyv-p7-9dJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Uec-ZI-EjA">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
