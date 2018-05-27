@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     //MARK: IBOutlet and property
     @IBOutlet var sideMenu: UIView!
@@ -16,6 +17,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     var sideMenuIsOpened = false
     @IBOutlet var dustCartTableView: UITableView!
     var cartToPass: DustCart?
+    var distanceRepresentInMeter: CLLocationDistance!
     
     //MARK: Data Struct of json
     struct DustCart: Decodable {
@@ -39,6 +41,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         dustCartTableView.delegate = self
         
         fetchData()
+        displayUserLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +65,22 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         sideMenuIsOpened = !sideMenuIsOpened
     }
     
+    //MARK: Fetch user Position.
+    var userLocationManager: CLLocationManager!
+    func displayUserLocation() {
+        userLocationManager = CLLocationManager()
+        userLocationManager.delegate = self
+        userLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        userLocationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            userLocationManager.startUpdatingHeading()
+            userLocationManager.startUpdatingLocation()
+            
+            print("Current User Location Data: \(userLocationManager.location)")
+        }
+    }
+    
     //MARK: TableView Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dustcarts.count
@@ -73,7 +92,14 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         if dustcarts.count == 0 {
             print("no data coming in.")
         } else {
-            cell.distanceFromUserLabel.text = "經緯度：" + dustcarts[indexPath.row].longitude + " " + dustcarts[indexPath.row].latitude
+            //calculate distance from user location
+            let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
+            let dustCartLocation = CLLocation(latitude: Double(dustcarts[indexPath.row].latitude)!, longitude: Double(dustcarts[indexPath.row].longitude)!)
+            distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
+            print("距離：\(Double(distanceRepresentInMeter)) 公尺")
+            
+//            cell.distanceFromUserLabel.text = "經緯度：" + dustcarts[indexPath.row].longitude + " " + dustcarts[indexPath.row].latitude
+            cell.distanceFromUserLabel.text = "距離你： \(Int(distanceRepresentInMeter)) 公尺。"
             cell.licensePlateNumberLabel.text = "車牌：" + dustcarts[indexPath.row].car
             cell.currentLocationLabel.text = "目前位置：" + dustcarts[indexPath.row].location
         }
@@ -102,6 +128,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
     }
+    
     
     //MARK: Fetch data Function.
     func fetchData() {

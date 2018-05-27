@@ -9,11 +9,12 @@
 import UIKit
 import MapKit
 
-class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     //MARK:  IBOutlet and property
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var infoTableView: UITableView!
     var car: String?
+    var distanceRepresentInMeter: CLLocationDistance!
     
     //MARK: Data Struct of json
     struct DustCart: Decodable {
@@ -35,8 +36,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         infoTableView.dataSource = self
         infoTableView.delegate = self
         
-        print(car!)
         fetchData()
+        displayUserLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,16 +67,24 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 let regionToDisplay = MKCoordinateRegionMakeWithDistance(
                     dustCartAnnotation.coordinate, 500, 500);
                 mapView.region = MKCoordinateRegion(center: regionToDisplay.center, span: regionToDisplay.span)
+                //calculate distance from user location
+                let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
+                let dustCartLocation = CLLocation(latitude: dustCartAnnotation.coordinate.latitude, longitude: dustCartAnnotation.coordinate.longitude)
+                distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
+                print("距離：\(Double(distanceRepresentInMeter)) 公尺")
+                
                 switch indexPath.row {
                 case 0:
-                    cell.informationLabel.text! = "車牌號碼：" + dustcart.car
+                    cell.informationLabel.text = "距離您 \(Int(distanceRepresentInMeter)) 公尺"
                 case 1:
-                    cell.informationLabel.text! = "垃圾車目前位置：" + dustcart.location
+                    cell.informationLabel.text! = "車牌號碼：" + dustcart.car
                 case 2:
-                    cell.informationLabel.text! = "清運路線編號：" + dustcart.lineid
+                    cell.informationLabel.text! = "垃圾車目前位置：" + dustcart.location
                 case 3:
-                    cell.informationLabel.text! = "行政區歸屬：" + dustcart.cityname
+                    cell.informationLabel.text! = "清運路線編號：" + dustcart.lineid
                 case 4:
+                    cell.informationLabel.text! = "行政區歸屬：" + dustcart.cityname
+                case 5:
                     cell.informationLabel.text! = "上一次更新時間：" + dustcart.time
                 default:
                     cell.informationLabel.text! = "no value."
@@ -94,6 +103,23 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: Fetch user Position.
+    var userLocationManager: CLLocationManager!
+    func displayUserLocation() {
+        userLocationManager = CLLocationManager()
+        userLocationManager.delegate = self
+        userLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        userLocationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            userLocationManager.startUpdatingHeading()
+            userLocationManager.startUpdatingLocation()
+            
+            print("Current User Location Data: \(userLocationManager.location)")
+        }
+    }
+    
     
     //MARK: Fetch data Function.
     func fetchData() {
