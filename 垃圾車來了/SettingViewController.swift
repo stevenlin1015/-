@@ -40,6 +40,27 @@ class SettingViewController: UIViewController {
         }
         sideMenuIsOpened = !sideMenuIsOpened
     }
+    
+    @IBAction func menuButtonSelected(_ sender: UIButton) {
+        switch sender.titleLabel?.text {
+        case "主頁"?:
+            print("Matches 主頁")
+            let settingVC = storyboard?.instantiateViewController(withIdentifier: "MainPageViewController")
+            self.present(settingVC!, animated: true, completion: nil)
+        case "政府公告"?:
+            print("Matches 政府公告")
+            let govNoticeVC = storyboard?.instantiateViewController(withIdentifier: "GovernmentNoticeViewController")
+            self.present(govNoticeVC!, animated: true, completion: nil)
+        case "設定"?:
+            print("Matches 設定")
+            sideMenuLeadingConstant.constant = -160
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        default:
+            print("no matches")
+        }
+    }
 
     /*
     // MARK: - Navigation
