@@ -18,6 +18,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var dustCartTableView: UITableView!
     var cartToPass: DustCart?
     var distanceRepresentInMeter: CLLocationDistance!
+    @IBOutlet var dimView: UIView!
     
     //MARK: Data Struct of json
     struct DustCart: Decodable {
@@ -54,11 +55,13 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         if sideMenuIsOpened {
             sideMenuLeadingConstant.constant = -160
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.0
                 self.view.layoutIfNeeded()
             })
         } else {
             sideMenuLeadingConstant.constant = 0
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.5
                 self.view.layoutIfNeeded()
             })
         }
@@ -70,6 +73,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             print("Matches 主頁")
             sideMenuLeadingConstant.constant = -160
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.0
                 self.view.layoutIfNeeded()
             })
         case "政府公告"?:

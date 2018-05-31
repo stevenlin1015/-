@@ -13,6 +13,8 @@ class SettingViewController: UIViewController {
     @IBOutlet var sideMenu: UIView!
     @IBOutlet var sideMenuLeadingConstant: NSLayoutConstraint!
     var sideMenuIsOpened = false
+    @IBOutlet var dimView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +32,13 @@ class SettingViewController: UIViewController {
         if sideMenuIsOpened {
             sideMenuLeadingConstant.constant = -160
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.0
                 self.view.layoutIfNeeded()
             })
         } else {
             sideMenuLeadingConstant.constant = 0
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.5
                 self.view.layoutIfNeeded()
             })
         }
@@ -55,6 +59,7 @@ class SettingViewController: UIViewController {
             print("Matches 設定")
             sideMenuLeadingConstant.constant = -160
             UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.alpha = 0.0
                 self.view.layoutIfNeeded()
             })
         default:
