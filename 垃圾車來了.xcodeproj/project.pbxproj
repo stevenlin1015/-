@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3F7E1A20BFC521009B89C3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F7E1920BFC521009B89C3 /* SettingsTableViewController.swift */; };
 		3F4636D720A9E446005D055B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4636D620A9E446005D055B /* AppDelegate.swift */; };
 		3F4636D920A9E446005D055B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4636D820A9E446005D055B /* MainPageViewController.swift */; };
 		3F4636DC20A9E446005D055B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4636DA20A9E446005D055B /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F3F7E1920BFC521009B89C3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		3F4636D320A9E446005D055B /* 垃圾車來了.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "垃圾車來了.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4636D620A9E446005D055B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F4636D820A9E446005D055B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				3F4636F020AD4C9B005D055B /* DetailViewTableViewCell.swift */,
 				3F468BAE20BA9FA8008AA834 /* GovernmentNoticeViewController.swift */,
 				3F468BB020BAA0AF008AA834 /* SettingViewController.swift */,
+				3F3F7E1920BFC521009B89C3 /* SettingsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				3F4636F320AD4DD7005D055B /* DustCartModel.swift in Sources */,
 				3F4636ED20AD4858005D055B /* MainPageInfoTableViewCell.swift in Sources */,
 				3F4636EF20AD4BA7005D055B /* DetailViewController.swift in Sources */,
+				3F3F7E1A20BFC521009B89C3 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
