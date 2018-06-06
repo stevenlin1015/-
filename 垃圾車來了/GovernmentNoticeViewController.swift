@@ -14,12 +14,17 @@ class GovernmentNoticeViewController: UIViewController {
     @IBOutlet var sideMenuLeadingConstant: NSLayoutConstraint!
     var sideMenuIsOpened = false
     @IBOutlet var dimView: UIView!
+    @IBOutlet var noticeWebView: UIWebView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let url = URL(string: "https://crd-rubbish.epd.ntpc.gov.tw/dispPageBox/Ntpcepd/NtpCp.aspx?ddsPageID=NTPEPD&")
+        let urlRequest = URLRequest(url: url!)
+        noticeWebView.loadRequest(urlRequest)
     }
 
     override func didReceiveMemoryWarning() {

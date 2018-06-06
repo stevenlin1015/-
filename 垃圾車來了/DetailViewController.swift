@@ -63,6 +63,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 dustCartAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(dustcart.latitude)!, longitude: Double(dustcart.longitude)!)
                 dustCartAnnotation.title = dustcart.car
                 dustCartAnnotation.subtitle = dustcart.location
+                
                 mapView.addAnnotation(dustCartAnnotation)
                 mapView.setCenter(dustCartAnnotation.coordinate, animated: true)
                 let regionToDisplay = MKCoordinateRegionMakeWithDistance(

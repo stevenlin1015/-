@@ -308,17 +308,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暫無公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-GH-k8A">
-                                <rect key="frame" x="70" y="303" width="234" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaP-2t-Pvh">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uID-Qa-USg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve5-Q9-29T">
                                 <rect key="frame" x="-160" y="0.0" width="160" height="667"/>
                                 <subviews>
@@ -380,7 +377,11 @@
                         <constraints>
                             <constraint firstItem="ve5-Q9-29T" firstAttribute="leading" secondItem="plt-42-wpz" secondAttribute="leading" constant="-160" id="1W6-eX-Lyl"/>
                             <constraint firstItem="plt-42-wpz" firstAttribute="trailing" secondItem="gaP-2t-Pvh" secondAttribute="trailing" id="KyH-pE-gF9"/>
+                            <constraint firstItem="uID-Qa-USg" firstAttribute="top" secondItem="plt-42-wpz" secondAttribute="top" id="PjN-lg-NnD"/>
                             <constraint firstItem="gaP-2t-Pvh" firstAttribute="top" secondItem="plt-42-wpz" secondAttribute="top" id="TsO-Qy-PJq"/>
+                            <constraint firstItem="uID-Qa-USg" firstAttribute="bottom" secondItem="plt-42-wpz" secondAttribute="bottom" id="Wph-Xe-XVz"/>
+                            <constraint firstItem="uID-Qa-USg" firstAttribute="trailing" secondItem="plt-42-wpz" secondAttribute="trailing" id="amV-vX-Liq"/>
+                            <constraint firstItem="uID-Qa-USg" firstAttribute="leading" secondItem="Rco-DZ-yub" secondAttribute="trailing" constant="-375" id="dvq-1L-eGd"/>
                             <constraint firstItem="plt-42-wpz" firstAttribute="bottom" secondItem="gaP-2t-Pvh" secondAttribute="bottom" id="fD8-el-GdV"/>
                             <constraint firstItem="ve5-Q9-29T" firstAttribute="top" secondItem="Rco-DZ-yub" secondAttribute="top" id="fh2-wZ-LpB"/>
                             <constraint firstItem="ve5-Q9-29T" firstAttribute="bottom" secondItem="plt-42-wpz" secondAttribute="bottom" id="hpF-Mc-FOS"/>
@@ -398,6 +399,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dimView" destination="gaP-2t-Pvh" id="6fr-b8-MZo"/>
+                        <outlet property="noticeWebView" destination="uID-Qa-USg" id="DLu-oQ-0Q7"/>
                         <outlet property="sideMenu" destination="ve5-Q9-29T" id="T3L-RK-e7P"/>
                         <outlet property="sideMenuLeadingConstant" destination="1W6-eX-Lyl" id="nj6-wN-8uH"/>
                     </connections>
@@ -415,7 +417,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnb-u8-8DV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="8TY-0j-sgX" kind="embed" id="DPF-z3-eHj"/>
                                 </connections>
@@ -493,7 +495,7 @@
                             <constraint firstItem="gps-oo-TDj" firstAttribute="leading" secondItem="kcp-ec-srB" secondAttribute="leading" id="bkB-sa-tP6"/>
                             <constraint firstItem="nnb-u8-8DV" firstAttribute="trailing" secondItem="kcp-ec-srB" secondAttribute="trailing" id="kc6-fL-j4I"/>
                             <constraint firstItem="kcp-ec-srB" firstAttribute="bottom" secondItem="gps-oo-TDj" secondAttribute="bottom" id="n71-eg-gnu"/>
-                            <constraint firstItem="nnb-u8-8DV" firstAttribute="top" secondItem="kcp-ec-srB" secondAttribute="top" id="rJy-XZ-vhs"/>
+                            <constraint firstItem="nnb-u8-8DV" firstAttribute="top" secondItem="acJ-PJ-y1z" secondAttribute="top" id="rJy-XZ-vhs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kcp-ec-srB"/>
                     </view>
@@ -577,7 +579,7 @@
             <objects>
                 <tableViewController id="8TY-0j-sgX" customClass="SettingsTableViewController" customModule="垃圾車來了" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GOZ-vC-xEh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.035294117649999998" green="0.61568627450000002" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -789,11 +791,11 @@
             <objects>
                 <viewController id="tby-7Y-ZGQ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aad-qm-YxX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Gh-po-VJK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="81" id="0If-wU-Ab7">

@@ -43,6 +43,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         
         fetchData()
         displayUserLocation()
+        sortArrayByDistance()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,6 +105,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             
             print("Current User Location Data: \(userLocationManager.location)")
         }
+        
     }
     
     //MARK: TableView Functions
@@ -177,5 +179,28 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         task.resume()
+    }
+    
+    //MARK: Sort dustcarts location by distance.
+    var sortedDustcartsArray: [DustCart] = []
+    var preDustcartLocation: CLLocationDistance!
+    var postDustcartLocation: CLLocationDistance!
+    func sortArrayByDistance() {
+        let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
+        for preDustcart in dustcarts {
+            for postDustcart in dustcarts {
+                let preDustCartLocation = CLLocation(latitude: Double(preDustcart.latitude)!, longitude: Double(preDustcart.longitude)!)
+                preDustcartLocation = currentUserLocation.distance(from: preDustCartLocation)
+                let postDustCartLocation = CLLocation(latitude: Double(postDustcart.latitude)!, longitude: Double(postDustcart.longitude)!)
+                postDustcartLocation = currentUserLocation.distance(from: postDustCartLocation)
+                
+                if Double(preDustcartLocation) > Double(postDustcartLocation) {
+                    sortedDustcartsArray.append(postDustcart)
+                }
+            }
+        }
+        print(sortedDustcartsArray)
+        //tableview.reload by sortedDustcartsArray
+        self.dustCartTableView.reloadData()
     }
 }
