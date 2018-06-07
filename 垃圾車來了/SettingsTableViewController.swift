@@ -48,7 +48,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.isScrollEnabled = false
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +60,7 @@ class SettingsTableViewController: UITableViewController {
     //MARK: TableView datasource
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected section \(indexPath.section); row \(indexPath.row)")
+        
         
     }
 
