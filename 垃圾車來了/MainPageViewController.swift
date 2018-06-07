@@ -125,14 +125,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         if dustcarts.count == 0 {
             print("no data coming in.")
         } else {
-//            //calculate distance from user location
-//            let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
-//            let dustCartLocation = CLLocation(latitude: Double(dustcarts[indexPath.row].latitude)!, longitude: Double(dustcarts[indexPath.row].longitude)!)
-//            distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
-//            print("距離：\(Double(distanceRepresentInMeter)) 公尺")
-//            cell.distanceFromUserLabel.text = "距離你： \(Int(distanceRepresentInMeter)) 公尺。"
-//            cell.licensePlateNumberLabel.text = "車牌：" + dustcarts[indexPath.row].car
-//            cell.currentLocationLabel.text = "目前位置：" + dustcarts[indexPath.row].location
 
             //calculate distance from user location
             let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
