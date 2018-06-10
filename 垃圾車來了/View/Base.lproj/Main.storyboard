@@ -230,6 +230,7 @@
                     <connections>
                         <outlet property="dimView" destination="QCK-cI-jux" id="N3y-ME-mSw"/>
                         <outlet property="dustCartTableView" destination="6nC-cl-TQr" id="VVJ-RN-CTY"/>
+                        <outlet property="greetingTitleLabel" destination="2oW-zb-iFi" id="e4L-7X-hzT"/>
                         <outlet property="sideMenu" destination="4eC-gZ-4r7" id="oND-oh-Ipw"/>
                         <outlet property="sideMenuLeadingConstant" destination="ly2-Dp-DsI" id="RT0-9Q-F9l"/>
                     </connections>

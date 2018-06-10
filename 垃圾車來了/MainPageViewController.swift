@@ -21,6 +21,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     var cartToPass: DustCart?
     var distanceRepresentInMeter: CLLocationDistance!
     @IBOutlet var dimView: UIView!
+    @IBOutlet var greetingTitleLabel: UILabel!
     
     //MARK: Data Struct of json
     struct DustCart: Decodable {
@@ -46,10 +47,8 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         displayUserLocation()
         fetchData()
         
-        //3D Touch capibility check.
-//        if (traitCollection.forceTouchCapability == .available) {
-//            registerForPreviewing(with: self as UIViewControllerPreviewing, sourceView: view)
-//        }
+        //MARK: setup greeting label to user according to date time on device.
+        setupGreetingTitleLabel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +56,22 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: Date time configuration.
+    func setupGreetingTitleLabel() {
+        let hourTime = Calendar.current.component(.hour, from: Date())
+        print("Current hour is \(hourTime)")
+        switch hourTime {
+        case 5...10:
+            greetingTitleLabel.text = "早安！"
+        case 11...15:
+            greetingTitleLabel.text = "午安！"
+        case 16...24,0...4:
+            greetingTitleLabel.text = "晚安！"
+        default:
+            print("您好！")
+        }
+    }
+    
     //MARK: SideMenu Action
     @IBAction func isOpenedSideMenu(_ sender: UIBarButtonItem) {
         if sideMenuIsOpened {
