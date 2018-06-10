@@ -42,9 +42,14 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         //initial setup for UITableView
         dustCartTableView.dataSource = self
         dustCartTableView.delegate = self
-        
+        //fetch data
         displayUserLocation()
         fetchData()
+        
+        //3D Touch capibility check.
+//        if (traitCollection.forceTouchCapability == .available) {
+//            registerForPreviewing(with: self as UIViewControllerPreviewing, sourceView: view)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,11 +153,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
      performSegue(withIdentifier: "player", sender: selectedPlayer)
      }
      */
-
-    var selectCart: DustCart?
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected: \(indexPath.row)")
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailViewSegue" {
@@ -180,7 +180,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.dustCartTableView.reloadData()
                     }
                 }
-                self.sortArrayByDistance()
             } else {
                 print("error")
             }
@@ -213,4 +212,5 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         print("最近的垃圾車車牌是：\(closetDustcart.car)，距離使用者位置：\(closetDustcartLocationDistance!) 公尺。")
     }
+    
 }

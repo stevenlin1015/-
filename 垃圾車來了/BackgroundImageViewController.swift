@@ -10,7 +10,7 @@ import UIKit
 
 class BackgroundImageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let images = ["Background-MainPage"]
+    let images = ["Background-MainPage","Background-MainPage2","Background-MainPage3","Background-MainPage4","Background-MainPage5"]
     
     //MARK: IBOutlet and Properties.
     @IBOutlet var backgroundImageTableView: UITableView!
