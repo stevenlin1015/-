@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ctg-Kb-SmG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wsM-eu-6qr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -525,6 +525,38 @@
             </objects>
             <point key="canvasLocation" x="1472.8" y="1589.9550224887557"/>
         </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="hMT-a4-iaq">
+            <objects>
+                <viewController id="wsM-eu-6qr" customClass="WelcomeViewController" customModule="垃圾車來了" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JYv-o4-2vh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launchscreen_recycle" translatesAutoresizingMaskIntoConstraints="NO" id="ibf-Nu-NbO">
+                                <rect key="frame" x="67" y="223.5" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="Gxh-gp-1Lc"/>
+                                    <constraint firstAttribute="width" constant="240" id="I3I-9R-iP3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ibf-Nu-NbO" firstAttribute="centerY" secondItem="OLb-bO-bcQ" secondAttribute="centerY" id="LNv-6T-Js4"/>
+                            <constraint firstItem="ibf-Nu-NbO" firstAttribute="centerX" secondItem="OLb-bO-bcQ" secondAttribute="centerX" id="b37-EZ-vLM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OLb-bO-bcQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="welcomeImageView" destination="ibf-Nu-NbO" id="O8v-uu-n9y"/>
+                        <segue destination="Ctg-Kb-SmG" kind="show" identifier="performMainPageViewController" id="48l-gA-lBV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SNY-eE-Myq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-943" y="151"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="UT2-Nf-mUU">
             <objects>
@@ -851,6 +883,7 @@
     </scenes>
     <resources>
         <image name="Background-MainPage" width="880" height="1565"/>
+        <image name="Launchscreen_recycle" width="512" height="512"/>
         <image name="sideMenuButton" width="24" height="24"/>
     </resources>
 </document>

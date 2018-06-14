@@ -22,6 +22,7 @@
 		3F4636F620AD9A54005D055B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4636F520AD9A54005D055B /* MapKit.framework */; };
 		3F468BAF20BA9FA8008AA834 /* GovernmentNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F468BAE20BA9FA8008AA834 /* GovernmentNoticeViewController.swift */; };
 		3F468BB120BAA0AF008AA834 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F468BB020BAA0AF008AA834 /* SettingViewController.swift */; };
+		3F95D6C320D24E820069D9E4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95D6C220D24E820069D9E4 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		3F4636F520AD9A54005D055B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F468BAE20BA9FA8008AA834 /* GovernmentNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovernmentNoticeViewController.swift; sourceTree = "<group>"; };
 		3F468BB020BAA0AF008AA834 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3F95D6C220D24E820069D9E4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		3F4636EA20AD45D7005D055B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3F95D6C220D24E820069D9E4 /* WelcomeViewController.swift */,
 				3F4636D820A9E446005D055B /* MainPageViewController.swift */,
 				3F4636EC20AD4858005D055B /* MainPageInfoTableViewCell.swift */,
 				3F4636EE20AD4BA7005D055B /* DetailViewController.swift */,
@@ -221,6 +224,7 @@
 				3F468BAF20BA9FA8008AA834 /* GovernmentNoticeViewController.swift in Sources */,
 				3F4636F320AD4DD7005D055B /* DustCartModel.swift in Sources */,
 				3F4636ED20AD4858005D055B /* MainPageInfoTableViewCell.swift in Sources */,
+				3F95D6C320D24E820069D9E4 /* WelcomeViewController.swift in Sources */,
 				3F4636EF20AD4BA7005D055B /* DetailViewController.swift in Sources */,
 				3F3F7E1A20BFC521009B89C3 /* SettingsTableViewController.swift in Sources */,
 			);
