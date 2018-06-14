@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     //MARK:
     /*匯入CoreLocation framework的目的是為了讓MapKit View取得GPS座標來顯示使用者目前所在位置。如果不需要顯示使用者所在位置，CoreLocation framework就不需要匯入了。
@@ -26,7 +27,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //詢問並取得目前位置
         locationManager.requestWhenInUseAuthorization()
         
+        //MARK: 通知中心
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if granted {
+                print("使用者允許開啟通知")
+            } else {
+                print("使用者不允許開啟通知")
+            }
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
+        
         return true
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("在前景推送通知...")
+        completionHandler([.alert])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

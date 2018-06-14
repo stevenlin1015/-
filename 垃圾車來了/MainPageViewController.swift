@@ -10,6 +10,7 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
 class MainPageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
@@ -54,6 +55,21 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Notification Object.
+    func RemindToThrowGarbage() {
+        let content = UNMutableNotificationContent()
+        content.title = "📣準備打包垃圾囉！"
+        content.body = "貼心提醒：垃圾車開始作業，別忘了待會將垃圾拿出來倒哦。"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "testRequest", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            print("成功建立通知")
+        }
     }
 
     //MARK: Date time configuration.
@@ -114,6 +130,8 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     //MARK: Refresh TableView
     @IBAction func refreshButtonClicked(_ sender: UIBarButtonItem) {
         fetchData()
+        //Setup Timer of 5 sec. and push local notifications to user.
+        RemindToThrowGarbage()
     }
     
     
@@ -129,7 +147,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             userLocationManager.startUpdatingHeading()
             userLocationManager.startUpdatingLocation()
             
-            print("Current User Location Data: \(userLocationManager.location)")
+            print("Current User Location Data: \(String(describing: userLocationManager.location))")
         }
         
     }

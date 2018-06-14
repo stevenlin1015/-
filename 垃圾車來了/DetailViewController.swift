@@ -118,7 +118,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             userLocationManager.startUpdatingHeading()
             userLocationManager.startUpdatingLocation()
             
-            print("Current User Location Data: \(userLocationManager.location)")
+            print("Current User Location Data: \(String(describing: userLocationManager.location))")
         }
     }
     
