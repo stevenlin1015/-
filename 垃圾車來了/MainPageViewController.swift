@@ -129,6 +129,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //MARK: Refresh TableView
     @IBAction func refreshButtonClicked(_ sender: UIBarButtonItem) {
+        dustcarts = []
         fetchData()
         //Setup Timer of 5 sec. and push local notifications to user.
         RemindToThrowGarbage()
@@ -168,7 +169,8 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
             let dustCartLocation = CLLocation(latitude: Double(dustcarts[indexPath.row].latitude)!, longitude: Double(dustcarts[indexPath.row].longitude)!)
             distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
-            cell.distanceFromUserLabel.text = "距離你： \(Int(distanceRepresentInMeter)) 公尺。"
+            
+            cell.distanceFromUserLabel.text = convertMeterToKilometer(meter: Int(distanceRepresentInMeter))
             cell.licensePlateNumberLabel.text = "車牌：" + dustcarts[indexPath.row].car
             cell.currentLocationLabel.text = "目前位置：" + dustcarts[indexPath.row].location
         }
@@ -176,8 +178,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.selectionStyle = .none
         return cell
     }
-    
-
     
     /*
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -244,6 +244,17 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         print("最近的垃圾車車牌是：\(closetDustcart.car)，距離使用者位置：\(closetDustcartLocationDistance!) 公尺。")
+    }
+    
+    //MARK: Calculate distance between meter and kilometer.
+    func convertMeterToKilometer(meter : Int) -> String {
+        var convertedDistance = meter
+        if convertedDistance >= 1000 {
+            convertedDistance /= 1000
+            return "距離你： \(convertedDistance) 公里。"
+        } else {
+            return "距離你： \(convertedDistance) 公尺。"
+        }
     }
     
 }
