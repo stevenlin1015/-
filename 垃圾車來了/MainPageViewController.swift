@@ -132,7 +132,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         dustcartsSorted = []
         dustcarts = []
         fetchData()
-        print("refresh")
         //Setup Timer of 5 sec. and push local notifications to user.
         RemindToThrowGarbage()
     }
