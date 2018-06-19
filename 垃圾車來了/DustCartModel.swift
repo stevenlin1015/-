@@ -17,4 +17,17 @@ struct DustCartModel {
     var latitude: String
     var cityid: String
     var cityname: String
+    var distanceFromUser: Int
+    
+    init(lineid: String, car: String, time: String, location: String, longitude: String, latitude: String, cityid: String, cityname: String, distanceFromUser: Int) {
+        self.lineid = lineid
+        self.car = car
+        self.time = time
+        self.location = location
+        self.longitude = longitude
+        self.latitude = latitude
+        self.cityid = cityid
+        self.cityname = cityname
+        self.distanceFromUser = distanceFromUser
+    }
 }

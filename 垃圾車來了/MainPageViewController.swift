@@ -36,6 +36,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         var cityname: String
     }
     var dustcarts: [DustCart] = []
+    var dustcartsSorted: [DustCartModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         //fetch data
         displayUserLocation()
         fetchData()
-        
         //MARK: setup greeting label to user according to date time on device.
         setupGreetingTitleLabel()
     }
@@ -129,6 +129,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //MARK: Refresh TableView
     @IBAction func refreshButtonClicked(_ sender: UIBarButtonItem) {
+        dustcartsSorted = []
         dustcarts = []
         fetchData()
         //Setup Timer of 5 sec. and push local notifications to user.
@@ -155,24 +156,18 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //MARK: TableView Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dustcarts.count
+        return dustcartsSorted.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dustCartCell", for: indexPath) as! MainPageInfoTableViewCell
 
-        if dustcarts.count == 0 {
+        if dustcartsSorted.count == 0 {
             print("no data coming in.")
         } else {
-
-            //calculate distance from user location
-            let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
-            let dustCartLocation = CLLocation(latitude: Double(dustcarts[indexPath.row].latitude)!, longitude: Double(dustcarts[indexPath.row].longitude)!)
-            distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
-            
-            cell.distanceFromUserLabel.text = convertMeterToKilometer(meter: Int(distanceRepresentInMeter))
-            cell.licensePlateNumberLabel.text = "車牌：" + dustcarts[indexPath.row].car
-            cell.currentLocationLabel.text = "目前位置：" + dustcarts[indexPath.row].location
+            cell.distanceFromUserLabel.text = convertMeterToKilometer(meter: dustcartsSorted[indexPath.row].distanceFromUser)
+            cell.licensePlateNumberLabel.text = "車牌：" + dustcartsSorted[indexPath.row].car
+            cell.currentLocationLabel.text = "目前位置：" + dustcartsSorted[indexPath.row].location
         }
         
         cell.selectionStyle = .none
@@ -191,7 +186,7 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         if segue.identifier == "detailViewSegue" {
             if let indexPath = dustCartTableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? DetailViewController
-                destinationViewController?.car = dustcarts[indexPath.row].car
+                destinationViewController?.car = dustcartsSorted[indexPath.row].car
             }
             
         }
@@ -213,6 +208,10 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.dustCartTableView.reloadData()
                     }
                 }
+                DispatchQueue.main.async {
+                    self.sortArrayByDistance()
+                    self.dustCartTableView.reloadData()
+                }
             } else {
                 print("error")
             }
@@ -221,29 +220,29 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     //MARK: Sort dustcarts location by distance.
-    var closetDustcart: DustCart!
-    var compareDustcartLocationDistance: CLLocationDistance!
-    var closetDustcartLocationDistance: CLLocationDistance!
     func sortArrayByDistance() {
-        let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
-        if dustcarts.count == 0 {
-            print("no item")
+        for dustcart in dustcarts {
+            //計算使用者與垃圾車距離
+            let currentUserLocation = CLLocation(latitude: (userLocationManager.location?.coordinate.latitude)!, longitude: (userLocationManager.location?.coordinate.longitude)!)
+            let dustCartLocation = CLLocation(latitude: Double(dustcart.latitude)!, longitude: Double(dustcart.longitude)!)
+            distanceRepresentInMeter = currentUserLocation.distance(from: dustCartLocation)
+            
+            //assign values
+            var cart: DustCartModel = DustCartModel(lineid: "", car: "", time: "", location: "", longitude: "", latitude: "", cityid: "", cityname: "", distanceFromUser: 0)
+            cart.lineid = dustcart.lineid
+            cart.car = dustcart.car
+            cart.time = dustcart.time
+            cart.location = dustcart.location
+            cart.longitude = dustcart.longitude
+            cart.latitude = dustcart.latitude
+            cart.cityid = dustcart.cityid
+            cart.cityname = dustcart.cityname
+            cart.distanceFromUser = Int(distanceRepresentInMeter)
+            //將加入距離差的資料加入新的陣列
+            dustcartsSorted.append(cart)
         }
-        for preDustcart in dustcarts {
-            for postDustcart in dustcarts {
-                //比較的垃圾車
-                let compareDustcartLocation = CLLocation(latitude: Double(preDustcart.latitude)!, longitude: Double(preDustcart.longitude)!)
-                compareDustcartLocationDistance = currentUserLocation.distance(from: compareDustcartLocation)
-                //距離最近的垃圾車
-                let closetDustcartLocation = CLLocation(latitude: Double(postDustcart.latitude)!, longitude: Double(postDustcart.longitude)!)
-                closetDustcartLocationDistance = currentUserLocation.distance(from: closetDustcartLocation)
-                //如果比較的垃圾車比距離最近的垃圾車距離還要小，就把「比較的垃圾車」struct賦值到closetDustcart陣列中，並取代較遠的。
-                if Double(compareDustcartLocationDistance) > Double(closetDustcartLocationDistance) {
-                    closetDustcart = postDustcart
-                }
-            }
-        }
-        print("最近的垃圾車車牌是：\(closetDustcart.car)，距離使用者位置：\(closetDustcartLocationDistance!) 公尺。")
+        //根據距離由近而遠排序
+        dustcartsSorted.sort(by: {$0.distanceFromUser < $1.distanceFromUser})
     }
     
     //MARK: Calculate distance between meter and kilometer.
