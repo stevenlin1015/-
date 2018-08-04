@@ -5,8 +5,7 @@
 //  Created by 林松賢 on 2018/5/14.
 //  Copyright © 2018年 林松賢. All rights reserved.
 //
-//  To-Do:
-//    sortArrayByDistance() 未正確計算最短距離
+//
 
 import UIKit
 import CoreLocation
@@ -174,13 +173,6 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    /*
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     let selectedPlayer = player[indexPath.row]
-     
-     performSegue(withIdentifier: "player", sender: selectedPlayer)
-     }
-     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailViewSegue" {
@@ -214,6 +206,10 @@ class MainPageViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             } else {
                 print("error")
+                let noInternetConnectionAlertView = UIAlertController(title: "無法取得資料", message: "網際網路無法連線，請確認行動網路/Wi-Fi屬於可連線狀態。", preferredStyle: .alert)
+                let confirmAction = UIAlertAction(title: "好", style: .default, handler: nil)
+                noInternetConnectionAlertView.addAction(confirmAction)
+                self.present(noInternetConnectionAlertView, animated: true, completion: nil)
             }
         }
         task.resume()

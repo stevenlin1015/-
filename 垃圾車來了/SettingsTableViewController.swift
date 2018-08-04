@@ -23,7 +23,7 @@ class SettingsTableViewController: UITableViewController {
      */
     @IBAction func contactDeveloperButton(_ sender: UIButton) {
         //display an alert instead of launch Mail app.
-        let emailUrl = URL(string: "04160410@ms1.mcu.edu.tw")
+        let emailUrl = URL(string: "mailto:04160410@ms1.mcu.edu.tw")
         UIApplication.shared.open(emailUrl!, options: [:], completionHandler: nil)
     }
     @IBAction func visitDeveloperWebsiteButton(_ sender: UIButton) {
