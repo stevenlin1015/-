@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F34CC1E21158D03004C2EF5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3F34CC1D21158D03004C2EF5 /* README.md */; };
 		3F3E2D0E20C90E01001F47EE /* BackgroundImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E2D0D20C90E01001F47EE /* BackgroundImageViewController.swift */; };
 		3F3E2D1020C90E1A001F47EE /* BackgroundImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E2D0F20C90E1A001F47EE /* BackgroundImageTableViewCell.swift */; };
 		3F3F7E1A20BFC521009B89C3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F7E1920BFC521009B89C3 /* SettingsTableViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F34CC1D21158D03004C2EF5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F3E2D0D20C90E01001F47EE /* BackgroundImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageViewController.swift; sourceTree = "<group>"; };
 		3F3E2D0F20C90E1A001F47EE /* BackgroundImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageTableViewCell.swift; sourceTree = "<group>"; };
 		3F3F7E1920BFC521009B89C3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		3F4636CA20A9E446005D055B = {
 			isa = PBXGroup;
 			children = (
+				3F34CC1D21158D03004C2EF5 /* README.md */,
 				3F4636D520A9E446005D055B /* 垃圾車來了 */,
 				3F4636D420A9E446005D055B /* Products */,
 				3F4636F420AD9A54005D055B /* Frameworks */,
@@ -204,6 +207,7 @@
 			files = (
 				3F4636E120A9E446005D055B /* LaunchScreen.storyboard in Resources */,
 				3F4636DE20A9E446005D055B /* Assets.xcassets in Resources */,
+				3F34CC1E21158D03004C2EF5 /* README.md in Resources */,
 				3F4636DC20A9E446005D055B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
