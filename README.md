@@ -20,5 +20,12 @@
     * 設定：應用程式相關設定，包含更新頻率、背景圖片、問題回報項目等。
 ****
 ## 具體方法
-![](NTPC-DustCart-Is-Coming/Github Repo source/投影片08.png "具體方法")
+![](https://github.com/stevenlin1015/NTPC-DustCart-Is-Coming/blob/master/Github%20Repo%20source/投影片08.png "具體方法")
 
+****
+## 預期成效
+![](https://github.com/stevenlin1015/NTPC-DustCart-Is-Coming/blob/master/Github%20Repo%20source/投影片09.png "預期成效")
+
+****
+## 未來展望
+![](https://github.com/stevenlin1015/NTPC-DustCart-Is-Coming/blob/master/Github%20Repo%20source/投影片10.png "未來展望")
